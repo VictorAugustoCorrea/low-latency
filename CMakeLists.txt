@@ -12,6 +12,7 @@ add_executable(LowLatencySystem
         src/macros.h
         src/mem_pool.h
         src/lock_free_queue.h
+        src/time_utils.h
 )
 
 target_link_libraries(LowLatencySystem PRIVATE Threads::Threads)
