@@ -28,7 +28,7 @@ namespace Common
         time_str -> assign(ctime(&time));
 
         if (!time_str -> empty())
-             time_str -> pop_back(); /** time_str -> at(time_str -> length() - 1) = '\0';  --> book version but pop becomes easier to understand. */
+             time_str -> at(time_str -> length() - 1) = '\0';
         return *time_str;
     }
 }
