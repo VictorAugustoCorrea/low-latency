@@ -13,7 +13,7 @@ namespace Common
     template <typename T> class LFQueue final
     {
     public:
-        LFQueue(std::size_t num_elems) : store_(num_elems, T()) /** pré allocation of vector storage */
+        explicit LFQueue(std::size_t num_elems) : store_(num_elems, T()) /** pré allocation of vector storage */
         {}
         auto getNextToWriteTo() noexcept
         {
@@ -26,7 +26,7 @@ namespace Common
         }
         auto getNextToRead() const noexcept -> const T*
         {
-            return (next_read_index_ == next_write_index_) ? nullptr : &store_[next_read_index_];
+            return next_read_index_ == next_write_index_ ? nullptr : &store_[next_read_index_];
         }
         auto updateReadIndex() noexcept
         {

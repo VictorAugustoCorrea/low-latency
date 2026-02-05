@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-inline auto ASSERT(bool cond, const std::string& msg) noexcept{
+inline auto ASSERT(const bool cond, const std::string& msg) noexcept{
     if (UNLIKELY(!cond))
     {
         std::cerr << msg << std::endl;

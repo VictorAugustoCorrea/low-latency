@@ -14,6 +14,8 @@ add_executable(LowLatencySystem
         src/lock_free_queue.h
         src/time_utils.h
         src/logging.h
+        src/socket_utils.h
+        src/tcp_socket.h
 )
 
 target_link_libraries(LowLatencySystem PRIVATE Threads::Threads)

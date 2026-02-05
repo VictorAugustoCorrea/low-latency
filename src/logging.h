@@ -76,14 +76,14 @@ namespace Common
         {
             file_.open(file_name);
             ASSERT(file_.is_open(), "Could not open log file: " + file_name);
-            logger_thread_ = createAndStartThread(-1, "Common/Logger" + file_name_, [this](){ flushQueue(); });
+            logger_thread_ = createAndStartThread(-1, "Common/Logger" + file_name_, [this] { flushQueue(); });
             ASSERT(logger_thread_ != nullptr, "Failed to start Logger Thread.");
         }
 
         ~Logger()
         {
             std::string time_str;
-            std::cerr << Common::getCurrentTimeStr(&time_str) << " Flushing and closing Logger for " << file_name_ << std::endl;
+            std::cerr << getCurrentTimeStr(&time_str) << " Flushing and closing Logger for " << file_name_ << std::endl;
             while (queue_.size())
             {
                 using namespace std::chrono_literals;
@@ -93,12 +93,12 @@ namespace Common
             logger_thread_ -> join();
 
             file_.close();
-            std::cerr << Common::getCurrentTimeStr(&time_str) << " Logger for " << file_name_ << " exiting." << std::endl;
+            std::cerr << getCurrentTimeStr(&time_str) << " Logger for " << file_name_ << " exiting." << std::endl;
         }
 
         auto pushValue( const LogElement &log_element) noexcept
         {
-            *(queue_.getNextToWriteTo()) = log_element;
+            *queue_.getNextToWriteTo() = log_element;
             queue_.updateWriteIndex();
         }
 
